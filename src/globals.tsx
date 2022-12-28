@@ -9,6 +9,7 @@ const globals = {
   functions: {
     /** Prepends reponame to links so they work in github deploy */
     prependPublicPrefix(src?: string | {src: string}) {
+      console.log("repo", process.env.GITHUB_REPOSITORY)
       if (src === undefined) return undefined;
       if (typeof src === "object") return src.src;
       if (
