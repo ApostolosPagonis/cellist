@@ -20,9 +20,11 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Link from 'next/link';
+import usePage, { Page } from '../hooks/usePage';
+import usePath from '../hooks/usePath';
 
 // TODO: highlight selected page (maybe in small screen show page instead of logo, except home)
-const pages: ('home'|'bio'|'photos'|'videos'|'events'|'contact')[] = ['home', 'bio', 'photos', 'videos', 'events', 'contact'];
+const pages: Page[] = ['home', 'bio', 'photos', 'videos', 'events', 'contact'];
 const languages = [{
   label: getUnicodeFlagIcon("GR"),
   locale: "el"
@@ -67,9 +69,29 @@ const SocMed = () => {
   </Box>
 }
 
+const PageLink = (props: {
+  children: React.ReactNode,
+  page: Page
+}) => {
+  let href: string;
+  if (props.page === "home") {
+    href = "/"
+  } else {
+    href = "/" + props.page
+  }
+  return <LocaleLink href={href}>
+    {props.children}
+  </LocaleLink>
+}
+
 const Header = observer(() => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+
+  const currentPage = usePage();
+  const currentPath = usePath();
+
+  console.log(currentPath);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -90,9 +112,10 @@ const Header = observer(() => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
+
+          {/* Big screen logo */}
           <Typography
             variant="h6"
-            component="a"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -103,9 +126,12 @@ const Header = observer(() => {
               textDecoration: 'none',
             }}
           >
-            {translate("logo")}
+            <PageLink page="home">
+              {translate("logo")}
+            </PageLink>
           </Typography>
 
+          {/* Small screen menu */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -135,21 +161,21 @@ const Header = observer(() => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {/* TODO: figure out why translation didn't work and now works here */}
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <LocaleLink href={"/" + page}>
+                <PageLink key={page} page={page}>
+                  <MenuItem selected={page === currentPage} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">{translate(page)}</Typography>
-                  </LocaleLink>
-                </MenuItem>
+                  </MenuItem>
+                </PageLink>
               ))}
             </Menu>
           </Box>
+
           {/* TODO: Add cello icon the one downloaded or https://www.svgrepo.com/svg/72863/cello */}
           {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
+          {/* Small screen logo */}
           <Typography
             variant="h5"
-            component="a"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -162,27 +188,31 @@ const Header = observer(() => {
               textAlign: "center"
             }}
           >
-            {translate("logo")}
+            <PageLink page="home">
+              {translate("logo")}
+            </PageLink>
           </Typography>
 
+          {/* Big screen menu */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                <LocaleLink href={"/" + page}>
+              <PageLink page={page} key={page}>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block'}}
+                  variant={currentPage === page ? "outlined" : undefined}
+                >
                   {translate(page)}
-                </LocaleLink>
-              </Button>
+                </Button>
+              </PageLink>
             ))}
           </Box>
 
+          {/* Lang and socials */}
           <Box>
             <SocMed />
-            <div style={{display: "grid", justifyItems: "right"}}>
-              <Tooltip title="Open languages">
+            <Box style={{display: "grid", justifyItems: "right"}}>
+              <Tooltip title={translate("changeLanguage")}>
                 <Button onClick={handleOpenUserMenu} sx={{
                   p: 0,
                   fontSize: "30px"
@@ -194,7 +224,7 @@ const Header = observer(() => {
                   }
                 </Button>
               </Tooltip>
-            </div>
+            </Box>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -211,17 +241,16 @@ const Header = observer(() => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {/* TODO: Just change language without changing page */}
               {languages.filter(setting => setting.locale !== store.lang).map((setting) => (
-                <MenuItem key={setting.locale} onClick={() => {
-                  handleCloseUserMenu()
-                }}>
-                  <Typography textAlign="center" sx={{fontSize: "29px"}}>
-                    <LocaleLink locale={setting.locale} href="">
+                <LocaleLink key={setting.locale} locale={setting.locale} href={currentPath ?? ""}>
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center" sx={{
+                      fontSize: "29px"
+                      }}>
                       {setting.label}
-                    </LocaleLink>
-                  </Typography>
-                </MenuItem>
+                    </Typography>
+                  </MenuItem>
+                </LocaleLink>
               ))}
             </Menu>
           </Box>

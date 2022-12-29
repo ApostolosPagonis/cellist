@@ -1,9 +1,10 @@
+import { observer } from 'mobx-react-lite';
 import { Html, Head, Main, NextScript } from 'next/document'
 import { makeStaticProps } from '../src/lib/getStatic'
 
 const defaultLocale = makeStaticProps()().props.locale
 
-export default function Document(props?: any) {
+const Document = observer((props?: any) => {
   const l = props?.__NEXT_DATA__?.props?.pageProps?.locale;
   const currentLocale = typeof l === "string" ? l : defaultLocale;
   return (
@@ -15,4 +16,6 @@ export default function Document(props?: any) {
       </body>
     </Html>
   )
-}
+})
+
+export default Document

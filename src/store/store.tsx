@@ -1,5 +1,5 @@
 import { enableStaticRendering } from "mobx-react-lite"
-import { makeAutoObservable } from "mobx"
+import { makeAutoObservable, runInAction } from "mobx"
 
 const isNode = !!process?.versions?.node;
 
@@ -61,4 +61,5 @@ class Store {
 }
 
 const store = new Store()
+
 export default store;

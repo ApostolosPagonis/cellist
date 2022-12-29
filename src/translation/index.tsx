@@ -38,31 +38,34 @@ type Key =
 | "contact"
 | "email"
 | "phone"
+| "changeLanguage"
 
 const en: Translation = {
   title: "Apostolos Pagonis - Cello | Official site",
   logo: "Apostolos Pagonis | Cello",
-  home: "home",
-  bio: "bio",
-  photos: "photos",
-  videos: "videos",
-  events: "events",
-  contact: "contact",
+  home: "Home",
+  bio: "Bio",
+  photos: "Photos",
+  videos: "Videos",
+  events: "Events",
+  contact: "Contact",
   email: "Email",
-  phone: "Phone"
+  phone: "Phone",
+  changeLanguage: "Other languages"
 };
 
 const el: Translation = {
   title: "Απόστολος Παγώνης | Cello",
   logo: "Απόστολος Παγώνης | Cello",
-  home: "αρχική",
-  bio: "βιογραφικό",
-  photos: "φωτογραφίες",
-  videos: "βίντεο",
-  events: "ατζέντα", // εκδηλώσεις
-  contact: "επικοινωνία",
+  home: "Αρχική",
+  bio: "Βιογραφικό",
+  photos: "Φωτογραφίες",
+  videos: "Βίντεο",
+  events: "Ατζέντα", // εκδηλώσεις
+  contact: "Επικοινωνία",
   email: "Ηλεκρονικό ταχυδρομείο",
-  phone: "Τηλέφωνο"
+  phone: "Τηλέφωνο",
+  changeLanguage: "Αλλαγή γλώσσας"
 };
 
 const languages: Languages = {
