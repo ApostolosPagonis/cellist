@@ -1,6 +1,5 @@
-import { Divider, Typography } from "@mui/material"
+import { Link, Typography } from "@mui/material"
 import { observer } from "mobx-react-lite"
-import Link from "next/link"
 import globals from "../../src/globals"
 import translate from "../../src/translation"
 

@@ -34,38 +34,37 @@ const languages = [{
 }];
 
 const SocMed = () => {
-  // TODO: Flex stretches icon buttons
-  return <Box sx={{display: "flex"}}>
-    <IconButton>
-      <Link
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{color: "inherit", textDecoration: "inherit"}}
-        href="https://www.linkedin.com/in/apostolos-pagonis-66a1b2b9/"
-      >
+  return <Box sx={{display: "flex", justifyContent: "center", flexWrap: "wrap", alignItems: "center"}}>
+    <Link
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{color: "inherit", textDecoration: "inherit"}}
+      href="https://www.linkedin.com/in/apostolos-pagonis-66a1b2b9/"
+    >
+      <IconButton color='primary' sx={{color: "white"}}>
         <LinkedInIcon />
-      </Link>
-    </IconButton>
-    <IconButton>
-      <Link
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{color: "inherit", textDecoration: "inherit"}}
-        href="https://www.facebook.com/apostolos.pagonis/"
-      >
+      </IconButton>
+    </Link>
+    <Link
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{color: "inherit", textDecoration: "inherit"}}
+      href="https://www.facebook.com/apostolos.pagonis/"
+    >
+      <IconButton color='primary' sx={{color: "white"}}>
         <FacebookIcon />
-      </Link>
-    </IconButton>
-    <IconButton>
-      <Link
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{color: "inherit", textDecoration: "inherit"}}
-        href="https://www.instagram.com/apostolospagonis/"
-      >
+      </IconButton>
+    </Link>
+    <Link
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{color: "inherit", textDecoration: "inherit"}}
+      href="https://www.instagram.com/apostolospagonis/"
+    >
+      <IconButton color='primary' sx={{color: "white"}}>
         <InstagramIcon />
-      </Link>
-    </IconButton>
+      </IconButton>
+    </Link>
   </Box>
 }
 
@@ -111,26 +110,6 @@ const Header = observer(() => {
   return <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
-
-          {/* Big screen logo */}
-          <Typography
-            variant="h6"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            <PageLink page="home">
-              {translate("logo")}
-            </PageLink>
-          </Typography>
-
           {/* Small screen menu */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -193,6 +172,25 @@ const Header = observer(() => {
             </PageLink>
           </Typography>
 
+          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
+          {/* Big screen logo */}
+          <Typography
+            variant="h6"
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            <PageLink page="home">
+              {translate("logo")}
+            </PageLink>
+          </Typography>
+
           {/* Big screen menu */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -209,8 +207,54 @@ const Header = observer(() => {
           </Box>
 
           {/* Lang and socials */}
-          <Box>
+          {/* <Box>
             <SocMed />
+            <Box style={{display: "grid", justifyItems: "right"}}>
+              <Tooltip title={translate("changeLanguage")}>
+                <Button onClick={handleOpenUserMenu} sx={{
+                  p: 0,
+                  fontSize: "30px"
+                }}>
+                  {
+                    store.lang === "el" ?
+                    getUnicodeFlagIcon("GR") :
+                    getUnicodeFlagIcon("GB")
+                  }
+                </Button>
+              </Tooltip>
+            </Box>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {languages.filter(setting => setting.locale !== store.lang).map((setting) => (
+                <LocaleLink key={setting.locale} locale={setting.locale} href={currentPath ?? ""}>
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center" sx={{
+                      fontSize: "29px"
+                      }}>
+                      {setting.label}
+                    </Typography>
+                  </MenuItem>
+                </LocaleLink>
+              ))}
+            </Menu>
+          </Box> */}
+
+          <SocMed />
+          <Box>
             <Box style={{display: "grid", justifyItems: "right"}}>
               <Tooltip title={translate("changeLanguage")}>
                 <Button onClick={handleOpenUserMenu} sx={{
