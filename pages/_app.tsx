@@ -71,7 +71,7 @@ const App = observer(({ Component, pageProps }: AppProps) => {
       position: "absolute",
       left: 0, top: 0, right: 0, bottom: 0,
 
-      // DISCUSS: Should there be background image?
+      // DISCUSS: Should there be background image? If yes checkout noise filters at gimp to choose.
       background: page === "bio" ?
         `${big ? "center" : "left"} / cover no-repeat url(${globals.functions.prependPublicPrefix('/tolis-bio.jpg')})` :
         // `left / cover no-repeat url(${globals.functions.prependPublicPrefix('/tolis-bio.jpg')})` :
