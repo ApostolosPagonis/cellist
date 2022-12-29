@@ -1,7 +1,14 @@
 import { Link, Typography } from "@mui/material"
 import { observer } from "mobx-react-lite"
 import globals from "../../src/globals"
-import translate from "../../src/translation"
+import { getStaticPaths, makeStaticProps } from "../../src/lib/getStatic"
+// import translate from "../../src/translation"
+
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import PhoneIcon from '@mui/icons-material/Phone';
+
+const getStaticProps = makeStaticProps()
+export { getStaticPaths, getStaticProps }
 
 const ContactPage = observer(() => {
   return <div
@@ -29,7 +36,7 @@ const ContactPage = observer(() => {
           gap: 10
         }}
       >
-        <Typography fontSize={"150%"}>
+        {/* <Typography fontSize={"150%"}>
           {translate("email")}: <Link href="mailto:apostolos92@windowslive.com">
             apostolos92@windowslive.com
           </Link>
@@ -38,6 +45,12 @@ const ContactPage = observer(() => {
           {translate("phone")}: <Link href="tel:+0031638496032">
             (+0031) 638496032
           </Link>
+        </Typography> */}
+        <Typography display={"flex"} gap="15px">
+          <AlternateEmailIcon color="secondary" /> <Link underline="none" href="mailto:apostolos92@windowslive.com">apostolos92@windowslive.com</Link>
+        </Typography>
+        <Typography display={"flex"} gap="15px">
+          <PhoneIcon color="secondary" /> <Link underline="none" href="mailto:apostolos92@windowslive.com">(+0031) 638496032</Link>
         </Typography>
       </div>
     </div>

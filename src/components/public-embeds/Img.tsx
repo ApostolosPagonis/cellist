@@ -8,6 +8,7 @@ export default function Img(
 ) {
   return <img
     {...props}
+    alt={props.alt ?? ""}
     src={globals.functions.prependPublicPrefix(props.src)}
   />;
 }

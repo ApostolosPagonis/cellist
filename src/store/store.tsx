@@ -8,7 +8,7 @@ enableStaticRendering(isNode);
 class Store {
   private _lang: string = "en";
   get lang() { return this._lang; }
-  set lang(lang: string) { this._lang = lang; }
+  set lang(lang: string) { this._lang = lang }
 
   private _colorMode: "light" | "dark" = "dark"
   get colorMode() {

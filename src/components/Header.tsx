@@ -22,8 +22,12 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Link from 'next/link';
 import usePage, { Page } from '../hooks/usePage';
 import usePath from '../hooks/usePath';
+import { Tab, Tabs } from '@mui/material';
+import useInternalNavigate from '../hooks/useInternalNavigate';
+import TranslateIcon from '@mui/icons-material/Translate';
+import LanguageIcon from '@mui/icons-material/Language';
+import CelloSvg1 from './svg/CelloSvg1';
 
-// TODO: highlight selected page (maybe in small screen show page instead of logo, except home)
 const pages: Page[] = ['home', 'bio', 'photos', 'videos', 'events', 'contact'];
 const languages = [{
   label: getUnicodeFlagIcon("GR"),
@@ -68,17 +72,20 @@ const SocMed = () => {
   </Box>
 }
 
+const pageToHref = (p: Page) => {
+  if (p === "home") {
+    return "/"
+  } else {
+    return "/" + p
+  }
+}
+
 const PageLink = (props: {
   children: React.ReactNode,
-  page: Page
+  page: Page,
+  style?: React.CSSProperties
 }) => {
-  let href: string;
-  if (props.page === "home") {
-    href = "/"
-  } else {
-    href = "/" + props.page
-  }
-  return <LocaleLink href={href}>
+  return <LocaleLink href={pageToHref(props.page)} style={props.style}>
     {props.children}
   </LocaleLink>
 }
@@ -90,7 +97,7 @@ const Header = observer(() => {
   const currentPage = usePage();
   const currentPath = usePath();
 
-  console.log(currentPath);
+  const navigate = useInternalNavigate();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -150,6 +157,7 @@ const Header = observer(() => {
             </Menu>
           </Box>
 
+          {/* TODO: Better favicon (also make it cello icon(?)) */}
           {/* TODO: Add cello icon the one downloaded or https://www.svgrepo.com/svg/72863/cello */}
           {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
           {/* Small screen logo */}
@@ -187,77 +195,81 @@ const Header = observer(() => {
             }}
           >
             <PageLink page="home">
+              <CelloSvg1 width={16} height={16} />
               {translate("logo")}
             </PageLink>
           </Typography>
 
           {/* Big screen menu */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          {/* With buttons */}
+          {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <PageLink page={page} key={page}>
+              // <PageLink page={page} key={page}>
                 <Button
-                  onClick={handleCloseNavMenu}
+                  key={page}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    navigate({href: pageToHref(page)})
+                  }}
                   sx={{ my: 2, color: 'white', display: 'block'}}
                   variant={currentPage === page ? "outlined" : undefined}
                 >
                   {translate(page)}
                 </Button>
-              </PageLink>
+              // </PageLink>
             ))}
-          </Box>
-
-          {/* Lang and socials */}
-          {/* <Box>
-            <SocMed />
-            <Box style={{display: "grid", justifyItems: "right"}}>
-              <Tooltip title={translate("changeLanguage")}>
-                <Button onClick={handleOpenUserMenu} sx={{
-                  p: 0,
-                  fontSize: "30px"
-                }}>
-                  {
-                    store.lang === "el" ?
-                    getUnicodeFlagIcon("GR") :
-                    getUnicodeFlagIcon("GB")
-                  }
-                </Button>
-              </Tooltip>
-            </Box>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'center',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'center',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {languages.filter(setting => setting.locale !== store.lang).map((setting) => (
-                <LocaleLink key={setting.locale} locale={setting.locale} href={currentPath ?? ""}>
-                  <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center" sx={{
-                      fontSize: "29px"
-                      }}>
-                      {setting.label}
-                    </Typography>
-                  </MenuItem>
-                </LocaleLink>
-              ))}
-            </Menu>
           </Box> */}
+          {/* With tabs */}
+          {/* DISCUSS: Do we like tabs? They work better in small screens. Also check out tab customization options. */}
+          <Box sx={{ alignSelf: "stretch", flexGrow: 1, display: {
+            xs: 'none',
+            md: 'flex',
+            minWidth: 0
+          }}}
+          >
+            <Tabs
+              value={currentPage ?? false}
+              sx={{
+                minHeight: "100%",
+                width: "100%"
+              }}
+              variant="scrollable"
+              scrollButtons="auto"
+            >
+              {pages.map((page) => (
+                <Tab
+                  value={page}
+                  key={page}
+                  onClick={() => currentPage !== page && navigate({href: pageToHref(page)})}
+                  label={translate(page)}
+
+                  sx={{
+                    ":hover": {
+                      // backgroundColor: theme => theme.palette.primary.dark
+                    }
+                  }}
+                />
+              ))}
+            </Tabs>
+          </Box>
 
           <SocMed />
           <Box>
+            {/* <SocMed /> */}
             <Box style={{display: "grid", justifyItems: "right"}}>
               <Tooltip title={translate("changeLanguage")}>
-                <Button onClick={handleOpenUserMenu} sx={{
+                {/* <IconButton onClick={handleOpenUserMenu} color='primary' sx={{color: "white"}}>
+                  <LanguageIcon />
+                  <TranslateIcon />
+                </IconButton> */}
+                <IconButton onClick={handleOpenUserMenu} color='primary' sx={{color: "white", lineHeight: 1}}>
+                  {
+                    store.lang === "el" ?
+                    getUnicodeFlagIcon("GR") :
+                    getUnicodeFlagIcon("GB")
+                  }
+                </IconButton>
+                {/* <Button onClick={handleOpenUserMenu} sx={{
                   p: 0,
                   fontSize: "30px"
                 }}>
@@ -266,7 +278,7 @@ const Header = observer(() => {
                     getUnicodeFlagIcon("GR") :
                     getUnicodeFlagIcon("GB")
                   }
-                </Button>
+                </Button> */}
               </Tooltip>
             </Box>
             <Menu

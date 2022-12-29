@@ -7,11 +7,13 @@ import store from '../store/store'
 const LocaleLink = observer(({
   children,
   locale,
-  href
+  href,
+  style
 }: {
   children?: React.ReactNode,
   locale?: string,
-  href: string
+  href: string,
+  style?: React.CSSProperties
 }) => {
   const l = locale ?? store.lang;
 
@@ -22,7 +24,7 @@ const LocaleLink = observer(({
       <L href={href} onClick={() => {
         store.lang = l;
         document.documentElement.lang = l;
-      }} style={{textDecoration: "inherit", color: "inherit"}}>
+      }} style={{textDecoration: "inherit", color: "inherit", ...style}}>
         {children}
       </L>
     </>
