@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
@@ -24,8 +23,8 @@ import usePage, { Page } from '../hooks/usePage';
 import usePath from '../hooks/usePath';
 import { Tab, Tabs } from '@mui/material';
 import useInternalNavigate from '../hooks/useInternalNavigate';
-import TranslateIcon from '@mui/icons-material/Translate';
-import LanguageIcon from '@mui/icons-material/Language';
+// import TranslateIcon from '@mui/icons-material/Translate';
+// import LanguageIcon from '@mui/icons-material/Language';
 import CelloSvg1 from './svg/CelloSvg1';
 
 const pages: Page[] = ['home', 'bio', 'photos', 'videos', 'events', 'contact'];
@@ -158,8 +157,8 @@ const Header = observer(() => {
           </Box>
 
           {/* TODO: Better favicon (also make it cello icon(?)) */}
-          {/* TODO: Add cello icon the one downloaded or https://www.svgrepo.com/svg/72863/cello */}
-          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
+          {/* TODO: Cello overlaps stuff and screen edge. May place it elsewhere? Can be put in |'s position, or try to push text to the right. */}
+          {/* TODO: check https://www.svgrepo.com/svg/72863/cello */}
           {/* Small screen logo */}
           <Typography
             variant="h5"
@@ -172,15 +171,23 @@ const Header = observer(() => {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
-              textAlign: "center"
+              textAlign: "center",
+
+              position: "relative"
             }}
           >
+            <CelloSvg1 wrapperStyle={{
+              position: "absolute",
+              left: 0,
+              width: 32,
+              height: 32,
+              transform: "translateX(-100%)"
+            }}/>
             <PageLink page="home">
               {translate("logo")}
             </PageLink>
           </Typography>
 
-          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           {/* Big screen logo */}
           <Typography
             variant="h6"
@@ -192,10 +199,18 @@ const Header = observer(() => {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
+
+              position: "relative"
             }}
           >
             <PageLink page="home">
-              <CelloSvg1 width={16} height={16} />
+              <CelloSvg1 wrapperStyle={{
+                position: "absolute",
+                left: 0,
+                width: 32,
+                height: 32,
+                transform: "translateX(-100%)"
+              }}/>
               {translate("logo")}
             </PageLink>
           </Typography>
