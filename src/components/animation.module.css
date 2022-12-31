@@ -1,0 +1,25 @@
+.DrawAttention {
+  animation:
+  300ms ease-in-out 2 alternate both sparkle,
+  400ms ease-in-out 2 alternate both blow;
+}
+
+@keyframes sparkle {
+  from {
+    color: #fff;
+  }
+
+  to {
+    color: #ffc107;
+  }
+}
+
+@keyframes blow {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.3);
+  }
+}

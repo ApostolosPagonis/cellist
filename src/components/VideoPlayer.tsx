@@ -9,8 +9,7 @@ import MinimizeIcon from '@mui/icons-material/Minimize';
 import ExpandIcon from '@mui/icons-material/Expand';
 import { useEffect, useState } from "react"
 import { runInAction } from "mobx"
-import Tooltip, { TooltipProps } from "@mui/material/Tooltip"
-import { styled } from "@mui/material/styles"
+import classes from "./animation.module.css"
 
 const VideoPlayer = observer(() => {
   const [mini, setMini] = useState(false);
@@ -132,7 +131,7 @@ const VideoPlayer = observer(() => {
             }
           }}
         >
-          <ExpandIcon />
+          <ExpandIcon className={mini ? classes.DrawAttention : undefined} />
         </Fab>
       </Zoom>
     </Box>
