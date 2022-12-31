@@ -22,7 +22,7 @@ const HomePage = observer(() => {
         style={{
           width: "100%",
           height: "100%",
-          background: `center / contain no-repeat url("${globals.functions.prependPublicPrefix('/tolis-headshot-1.jpg')}")`
+          background: `center / contain no-repeat url("${globals.functions.prependPublicPrefix('/headshot.jpg')}")`
         }}
       />
     </Box>

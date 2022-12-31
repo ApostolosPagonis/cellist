@@ -18,6 +18,7 @@ import Header from '../src/components/Header';
 import globals from '../src/globals';
 import usePage from '../src/hooks/usePage';
 import useIsBig from '../src/hooks/usIsBig';
+import VideoPlayer from '../src/components/VideoPlayer';
 
 const defaultLocale = makeStaticProps()().props.locale;
 
@@ -61,7 +62,8 @@ const App = observer(({ Component, pageProps }: AppProps) => {
       {/* https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size */}
       <style>{`
         * {
-          min-width: 0
+          min-width: 0;
+          --swiper-theme-color: #fff;
         }
       `}</style>
     </Head>
@@ -71,18 +73,14 @@ const App = observer(({ Component, pageProps }: AppProps) => {
       position: "absolute",
       left: 0, top: 0, right: 0, bottom: 0,
 
-      // DISCUSS: Should there be background image? If yes checkout noise filters at gimp to choose.
       background: page === "bio" ?
         `${big ? "center" : "left"} / cover no-repeat url(${globals.functions.prependPublicPrefix('/tolis-bio.jpg')})` :
-        // `left / cover no-repeat url(${globals.functions.prependPublicPrefix('/tolis-bio.jpg')})` :
         // Noise for background image found here imagedoc-darknoise.png
         // https://searchfox.org/mozilla-central/source/toolkit/themes/shared/media
-        `url(${globals.functions.prependPublicPrefix('/imagedoc-darkernoise.png')})`
+        undefined
     }}>
       <div
         style={{
-          // DISCUSS: Should there be blur?
-          backdropFilter: page === "bio" ? undefined : "blur(2px)",
           width: "100%",
           height: "100%",
           display: "grid",
@@ -92,6 +90,7 @@ const App = observer(({ Component, pageProps }: AppProps) => {
         <Header />
         <main style={{position: "relative"}}>
           <Component {...pageProps} />
+          <VideoPlayer />
         </main>
       </div>
     </div>

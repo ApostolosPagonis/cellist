@@ -23,8 +23,6 @@ import usePage, { Page } from '../hooks/usePage';
 import usePath from '../hooks/usePath';
 import { Tab, Tabs } from '@mui/material';
 import useInternalNavigate from '../hooks/useInternalNavigate';
-// import TranslateIcon from '@mui/icons-material/Translate';
-// import LanguageIcon from '@mui/icons-material/Language';
 import CelloSvg1 from './svg/CelloSvg1';
 
 const pages: Page[] = ['home', 'bio', 'photos', 'videos', 'events', 'contact'];
@@ -113,6 +111,16 @@ const Header = observer(() => {
     setAnchorElUser(null);
   };
 
+  const logo = <span
+    style={{display: "flex", flexWrap: "wrap", justifyContent: "center"}}
+  >
+    <CelloSvg1 wrapperStyle={{
+      width: 32,
+      height: 32
+    }}/>
+    {translate("logo")}
+  </span>
+
   return <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -156,9 +164,6 @@ const Header = observer(() => {
             </Menu>
           </Box>
 
-          {/* TODO: Better favicon (also make it cello icon(?)) */}
-          {/* TODO: Cello overlaps stuff and screen edge. May place it elsewhere? Can be put in |'s position, or try to push text to the right. */}
-          {/* TODO: check https://www.svgrepo.com/svg/72863/cello */}
           {/* Small screen logo */}
           <Typography
             variant="h5"
@@ -176,16 +181,9 @@ const Header = observer(() => {
               position: "relative"
             }}
           >
-            <CelloSvg1 wrapperStyle={{
-              position: "absolute",
-              left: 0,
-              width: 32,
-              height: 32,
-              transform: "translateX(-100%)"
-            }}/>
-            <PageLink page="home">
-              {translate("logo")}
-            </PageLink>
+            {/* <PageLink page="home"> */}
+              {logo}
+            {/* </PageLink> */}
           </Typography>
 
           {/* Big screen logo */}
@@ -204,14 +202,7 @@ const Header = observer(() => {
             }}
           >
             <PageLink page="home">
-              <CelloSvg1 wrapperStyle={{
-                position: "absolute",
-                left: 0,
-                width: 32,
-                height: 32,
-                transform: "translateX(-100%)"
-              }}/>
-              {translate("logo")}
+              {logo}
             </PageLink>
           </Typography>
 
@@ -273,10 +264,6 @@ const Header = observer(() => {
             {/* <SocMed /> */}
             <Box style={{display: "grid", justifyItems: "right"}}>
               <Tooltip title={translate("changeLanguage")}>
-                {/* <IconButton onClick={handleOpenUserMenu} color='primary' sx={{color: "white"}}>
-                  <LanguageIcon />
-                  <TranslateIcon />
-                </IconButton> */}
                 <IconButton onClick={handleOpenUserMenu} color='primary' sx={{color: "white", lineHeight: 1}}>
                   {
                     store.lang === "el" ?
@@ -284,16 +271,6 @@ const Header = observer(() => {
                     getUnicodeFlagIcon("GB")
                   }
                 </IconButton>
-                {/* <Button onClick={handleOpenUserMenu} sx={{
-                  p: 0,
-                  fontSize: "30px"
-                }}>
-                  {
-                    store.lang === "el" ?
-                    getUnicodeFlagIcon("GR") :
-                    getUnicodeFlagIcon("GB")
-                  }
-                </Button> */}
               </Tooltip>
             </Box>
             <Menu

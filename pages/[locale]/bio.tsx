@@ -1,16 +1,22 @@
-import { Box, useMediaQuery, useTheme } from "@mui/material"
+import { Box, useTheme } from "@mui/material"
 import Typography from "@mui/material/Typography"
 import { observer } from "mobx-react-lite"
-import Img from "../../src/components/public-embeds/Img"
+// import { useRouter } from "next/router"
+// import RealBio from "../../src/components/real-bio"
 import useIsBig from "../../src/hooks/usIsBig"
 import { getStaticPaths, makeStaticProps } from "../../src/lib/getStatic"
 
 const getStaticProps = makeStaticProps()
 export { getStaticPaths, getStaticProps }
 
-const ContactPage = observer(() => {
+const BioPage = observer(() => {
   const theme = useTheme();
   const big = useIsBig();
+
+  // const router = useRouter();
+  // if (router.query.real === "") {
+  //   return <RealBio />
+  // }
 
   return <Box sx={{
     position: "absolute",
@@ -37,61 +43,25 @@ const ContactPage = observer(() => {
     </Typography>
 
     <Typography paragraph>
-      Apostolos Pagonis (also known as "Pagonini", "Αποστολλων" and "Ο ξανθός απόλυτος γκόμενος με τα μπράτσα") was a renowned personality of the 21st century. Well known as a cellist but better known as a pornstar that wouldn't stop, there is little doubt that he excelled at everything he tried his hand at (except maths, drawing and not-constantly-wanking-off.)
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus auctor neque sed cursus. Curabitur enim ligula, auctor non eros ac, lobortis fermentum mi. Morbi eu enim pharetra, rutrum augue venenatis, molestie felis. Aliquam erat volutpat. Etiam malesuada, sapien at rutrum pellentesque, orci est cursus est, et sagittis justo purus a arcu. Mauris eget urna felis. Etiam non ultricies ex. Proin hendrerit ante ut neque pulvinar pretium. Donec faucibus tempor lectus, vitae luctus orci cursus non. Pellentesque pretium malesuada turpis id rhoncus. Donec ultricies odio at finibus lacinia.
     </Typography>
 
     <Typography paragraph>
-      Apostolos attended <em>2o λύκειο αγίου Μπραχαμίου</em> but his incompetence at every subject made it clear early that it was a musician's career for him. Indeed, after failing music theory 69 (nice!) times he got his degree which permitted him to move on from the trashheap country he lived in to a long forgotten place that has since been swallowed by the ocean.
-    </Typography>
-
-    <Box sx={{border: "1px solid white", p: "5px", mb: "15px", fontSize: "120%", backgroundColor: "#0005", borderRadius: "3px", textAlign: "center"}}>
-      <Box>
-        “<em>Με σάλιο και υπομονή ο κώλος γίνεται μουνί.</em>”
-      </Box>
-      <Box sx={{color: "#fffa", fontSize: "70%", textAlign: "right", marginRight: "5px"}}>
-        ―Apostolos Pagonis about his work
-      </Box>
-    </Box>
-
-    <Typography paragraph>
-      Unfortunatelly his time was ravaged by the tech wars. He valiantly fought against the tech warlords, singlehandedly defeating Elon Musk and his muskrats and Mark Zuckerberg and his boomer droids. Alas he was defeated by Jeff bezos and his union-crushers.
+      Donec magna dolor, elementum commodo rhoncus quis, tristique vitae urna. Mauris pretium odio in augue consequat, eu sagittis massa imperdiet. Donec ut libero non diam tincidunt lobortis nec in elit. Phasellus facilisis luctus odio, in mattis urna laoreet ut. Phasellus vel ligula dignissim, convallis leo eu, faucibus lacus. Nullam ultricies nisl id lectus gravida, vitae dignissim lectus pharetra. Fusce malesuada metus vel nibh finibus, in fermentum ante elementum. Mauris euismod urna ac erat consectetur, id vehicula diam lacinia.
     </Typography>
 
     <Typography paragraph>
-      After his defeat Apostolos was forced to work the rest of his life as a courier for amazon products. During his later years Bezos insisted that making him pee in a plastic bottle for the rest of his life wasn't "<span style={{fontStyle: "italic"}}>done as some twisted kind of retribution for his resistance</span>" but he "<span style={{fontStyle: "italic"}}>[does] the same to everyone.</span>"
-    </Typography>
-
-    <Box sx={{border: "1px solid white", p: "5px", mb: "15px", fontSize: "120%", backgroundColor: "#0005", borderRadius: "3px", textAlign: "center"}}>
-      <Box>
-        “<em>Μας ψείρισε κι από πάνω!</em>”
-      </Box>
-      <Box sx={{color: "#fffa", fontSize: "70%", textAlign: "right", marginRight: "5px"}}>
-        ―Apostolos Pagonis about a business deal gone wrong
-      </Box>
-    </Box>
-
-    <Img
-      style={{float: "right", marginLeft: "5px"}}
-      src={"/pagonini.png"}
-    />
-
-    <Typography paragraph>
-      All good things come to an end but so did Apostolos' life. He died horribly in an accident that we need not get into. "<span style={{fontStyle: "italic"}}>I shouldn't have got him that DIY autoerotic asphyxiation kit for his birthday.</span>" his close friend and associate laments. RIP.
+      Maecenas tincidunt purus sit amet erat volutpat tincidunt. Praesent egestas sit amet quam id condimentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur gravida vestibulum imperdiet. Suspendisse feugiat tincidunt imperdiet. Aliquam facilisis dictum interdum. Morbi cursus dolor ipsum, quis efficitur arcu posuere vel. Vestibulum quis venenatis enim. Nunc nisi metus, pulvinar quis mauris ut, maximus sodales ipsum. Vestibulum blandit, nisl nec porta consectetur, erat mauris bibendum justo, et tempor nunc augue eu magna. Quisque non imperdiet eros, et pellentesque ex. Integer efficitur nibh tempor augue luctus tincidunt. Nam eu metus pellentesque, posuere est non, cursus erat. Morbi eget nisl sit amet elit pulvinar sollicitudin.
     </Typography>
 
     <Typography paragraph>
-      In the end at least we can say: He died the way he lived; with a ragin' boner.
+      Nulla fringilla eros vitae nibh lacinia, eget ullamcorper mi suscipit. Phasellus at sapien eget metus feugiat tristique ac vitae elit. Praesent rutrum aliquet mauris non pellentesque. Mauris id nisi velit. Mauris nec nibh eu lorem dapibus vulputate. Pellentesque lobortis vulputate urna. Etiam volutpat ex sed lorem bibendum, a consectetur magna blandit. Quisque a mauris aliquam, lobortis ante sit amet, rutrum lorem. Etiam malesuada dui urna, et sodales leo ultricies ut. Praesent ultricies ultrices lacus, at feugiat enim vulputate vel. Ut maximus neque nisl, non scelerisque elit luctus ut. Nulla vestibulum lectus quis ipsum pellentesque lobortis.
     </Typography>
 
-    <Box sx={{border: "1px solid white", p: "5px", mb: "15px", fontSize: "120%", backgroundColor: "#0005", borderRadius: "3px", textAlign: "center"}}>
-      <Box>
-        “<em>Δεν γίναν έτσι τα πράγματα.</em>”
-      </Box>
-      <Box sx={{color: "#fffa", fontSize: "70%", textAlign: "right", marginRight: "5px"}}>
-        ―Apostolos Pagonis about this biography. Wait no
-      </Box>
-    </Box>
+    <Typography paragraph>
+      Aenean iaculis metus id fringilla faucibus. Curabitur et finibus mauris. Donec rutrum tortor quis justo dignissim, nec vehicula nunc hendrerit. Suspendisse feugiat at dui et mattis. Cras ut vehicula tellus, eget dapibus dolor. Morbi ultrices, lorem ac gravida sollicitudin, ipsum enim sagittis mauris, in ullamcorper ante est ut dui. Nullam blandit convallis rutrum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum dapibus pretium ex, vitae interdum quam hendrerit eget. Vivamus dapibus lectus vitae turpis molestie tempor. Curabitur ipsum tortor, elementum et ex eget, molestie condimentum mauris. Aenean viverra sagittis tincidunt.
+    </Typography>
   </Box>
 })
 
-export default ContactPage
+export default BioPage

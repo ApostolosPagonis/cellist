@@ -1,11 +1,33 @@
 import { enableStaticRendering } from "mobx-react-lite"
-import { makeAutoObservable, runInAction } from "mobx"
+import { makeAutoObservable } from "mobx"
 
 const isNode = !!process?.versions?.node;
 
 enableStaticRendering(isNode);
 
+type VideoData = {
+  readonly src?: string;
+  readonly youtube?: boolean;
+  readonly title?: string;
+}
+
 class Store {
+  private _video?: VideoData;
+  get video() {return this._video}
+  set video(v: VideoData | undefined) {this._video = v;}
+
+  private vmt = false;
+  get videoMaximizeTrigger(): unknown {return this.vmt}
+  triggerMaximize() {this.vmt = !this.vmt;}
+
+  get youtubeEmbed() {
+    if (this._video?.src) {
+      return "https://www.youtube.com/embed/" + this._video.src
+    } else {
+      return undefined;
+    }
+  }
+
   private _lang: string = "en";
   get lang() { return this._lang; }
   set lang(lang: string) { this._lang = lang }
