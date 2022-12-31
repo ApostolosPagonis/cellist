@@ -6,9 +6,10 @@ const isNode = !!process?.versions?.node;
 enableStaticRendering(isNode);
 
 type VideoData = {
-  readonly src?: string;
+  readonly src: string;
   readonly youtube?: boolean;
   readonly title?: string;
+  readonly thumb?: string;
 }
 
 class Store {

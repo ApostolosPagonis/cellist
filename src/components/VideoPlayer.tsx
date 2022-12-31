@@ -10,6 +10,7 @@ import ExpandIcon from '@mui/icons-material/Expand';
 import { useEffect, useState } from "react"
 import { runInAction } from "mobx"
 import classes from "./animation.module.css"
+import Video from "./public-embeds/Video"
 
 const VideoPlayer = observer(() => {
   const [mini, setMini] = useState(false);
@@ -47,7 +48,23 @@ const VideoPlayer = observer(() => {
               transform: "translate(-50%, -50%)"
             }}
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen /> : undefined
+            allowFullScreen
+          /> :
+            <Video
+              src={store.video.src}
+              controls
+              autoPlay
+              playsInline
+              style={{
+                border: "0px",
+                width: "90vw",
+                height: "90vh",
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                transform: "translate(-50%, -50%)"
+              }}
+            />
         )}
       </Box>
     </Fade>

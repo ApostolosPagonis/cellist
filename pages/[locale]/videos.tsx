@@ -36,12 +36,23 @@ const videos: VideoData[] = [
     src: "Zl9FTlKK1e0",
     youtube: true,
     title: "Giuseppe Tartini - Devil's Trill Sonata"
+  },
+  {
+    src: "/videos/sample-5s.mp4",
+    thumb: "/videos/sample-5s_thumb.jpg",
+    title: "sample local video"
+  },
+  {
+    src: "/videos/broken.mp4",
+    title: "broken video local"
+  },
+  {
+    src: "invalid",
+    youtube: true,
+    title: "broken video youtube"
   }
 ];
 
-const toYoutubeEmbed = (youtubeID: string) => {
-  return "https://www.youtube.com/embed/" + youtubeID
-}
 const toYoutubeThumbnail = (youtubeID: string) => {
   return `https://img.youtube.com/vi/${youtubeID}/hqdefault.jpg`
 }
@@ -66,7 +77,9 @@ const PhotosPage = observer(() => {
       >
         {videos.map((item, i) => {
           let src: string = "";
-          if (item.src) {
+          if (item.thumb) {
+            src = item.thumb
+          } else if (item.youtube) {
             src = toYoutubeThumbnail(item.src)
           }
           const isSelected = areVideosEqual(item, store.video);
@@ -100,7 +113,7 @@ const PhotosPage = observer(() => {
                 objectFit: "cover"
               }}
             />
-            {item.title && <Box
+            <Box
               sx={{
                 position: "absolute",
                 left: 0, right: 0,
@@ -135,7 +148,7 @@ const PhotosPage = observer(() => {
                   <PlayArrowIcon />
                 </Box> : undefined
               }
-            </Box>}
+            </Box>
           </Box>
         })}
       </Box>
