@@ -19,7 +19,7 @@ export const useRedirect = (to?: string) => {
 
     languageDetector.cache && languageDetector.cache(detectedLng)
     router.replace('/' + detectedLng + toPath);
-  }, []);
+  }, [router, toPath]);
 };
 
 // eslint-disable-next-line react/display-name
