@@ -89,6 +89,7 @@ const PhotosPage = observer(() => {
       >
         {images.map((item, i) => (
           <Box
+            key={item.src}
             sx={{
               overflow: "hidden",
               lineHeight: 0,
@@ -101,7 +102,6 @@ const PhotosPage = observer(() => {
             }}
           >
             <Img
-              key={item.src}
               src={item.thumb ?? item.src}
               loading="lazy"
 
