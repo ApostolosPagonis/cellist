@@ -85,11 +85,19 @@ const PhotosPage = observer(() => {
           const isSelected = areVideosEqual(item, store.video);
           return <Box
             key={src + (item.youtube ? "y" : "l")}
-            style={{
+            sx={{
               position: "relative",
               borderRadius: "12px",
               overflow: "hidden",
-              lineHeight: 0
+              lineHeight: 0,
+              cursor: "pointer",
+
+              "--img-scale": 1,
+    
+              "&:hover": {
+                "--img-scale": 1.1,
+                // outline: theme => `1px ${theme.palette.primary.main} solid`
+              }
             }}
           >
             <Img
@@ -110,7 +118,9 @@ const PhotosPage = observer(() => {
 
               style={{
                 width, height,
-                objectFit: "cover"
+                objectFit: "cover",
+                transform: "scale(var(--img-scale))",
+                transition: "transform 1s"
               }}
             />
             <Box

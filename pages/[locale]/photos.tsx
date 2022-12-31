@@ -21,6 +21,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import { Fade } from '@mui/material'
 import { observer } from 'mobx-react-lite'
 import { getStaticPaths, makeStaticProps } from '../../src/lib/getStatic'
+import { transform } from 'typescript'
 
 const getStaticProps = makeStaticProps()
 export { getStaticPaths, getStaticProps }
@@ -83,27 +84,44 @@ const PhotosPage = observer(() => {
           flexWrap: "wrap",
           padding: "24px",
           gap: "7px",
-          justifyContent: "space-around"
+          justifyContent: "center",
         }}
       >
         {images.map((item, i) => (
-          <Img
-            key={item.src}
-            src={item.thumb ?? item.src}
-            loading="lazy"
-
-            onClick={() => {
-              setOpen(true);
-              slide.current = i;
-              if (swiper.current) swiper.current.slideTo(i + 1, 0, false);
+          <Box
+            sx={{
+              overflow: "hidden",
+              lineHeight: 0,
+              "--img-scale": 1,
+    
+              "&:hover": {
+                "--img-scale": 1.1,
+                // outline: theme => `1px ${theme.palette.primary.main} solid`
+              }
             }}
+          >
+            <Img
+              key={item.src}
+              src={item.thumb ?? item.src}
+              loading="lazy"
 
-            style={{
-              width: size,
-              height: size,
-              objectFit: "cover"
-            }}
-          />
+              onClick={() => {
+                setOpen(true);
+                slide.current = i;
+                if (swiper.current) swiper.current.slideTo(i + 1, 0, false);
+              }}
+
+              style={{
+                width: size,
+                height: size,
+                objectFit: "cover",
+                flexGrow: 1,
+                cursor: "pointer",
+                transform: "scale(var(--img-scale))",
+                transition: "transform 1s"
+              }}
+            />
+          </Box>
         ))}
       </Box>
       <Fade
