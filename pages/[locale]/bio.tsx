@@ -48,7 +48,7 @@ const BioPage = observer(() => {
     {
       text.split("|").filter(part => part !== "").map(part => {
         return (
-          <Typography paragraph>
+          <Typography paragraph key={part}>
             {part.trim()}
           </Typography>
         )

@@ -42,9 +42,11 @@ const App = observer(({ Component, pageProps }: AppProps) => {
     document.documentElement.lang = lang;
   }, [lang]);
 
+  const cm = store.colorMode;
+
   const theme = useMemo(() => {
-    return createTheme(getDesignTokents(store.colorMode));
-  }, [store.colorMode]);
+    return createTheme(getDesignTokents(cm));
+  }, [cm]);
 
   const page = usePage();
 
