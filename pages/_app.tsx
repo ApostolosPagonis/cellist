@@ -54,7 +54,9 @@ const App = observer(({ Component, pageProps }: AppProps) => {
     <CssBaseline enableColorScheme />
     <Head>
       <title>{translate("title")}</title>
-      <meta name="description" content="[description]" />
+
+      {/* TODO: Add description */}
+      {/* <meta name="description" content="[description]" /> */}
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <LinkExternalResource rel="icon" href="/favicon.ico" />
 

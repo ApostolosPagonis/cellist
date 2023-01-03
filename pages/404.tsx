@@ -1,6 +1,6 @@
 import { getRedirect } from "../src/lib/redirect"
 
 // Not found pages redirect to home page
-const ErrorPage = getRedirect("");
+const Custom404 = getRedirect("");
 
-export default ErrorPage
+export default Custom404

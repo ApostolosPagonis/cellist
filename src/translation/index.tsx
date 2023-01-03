@@ -39,6 +39,7 @@ type Key =
 | "email"
 | "phone"
 | "changeLanguage"
+| "bioText"
 
 const en: Translation = {
   title: "Apostolos Pagonis - Cello | Official site",
@@ -51,7 +52,14 @@ const en: Translation = {
   contact: "Contact",
   email: "Email",
   phone: "Phone",
-  changeLanguage: "Other languages"
+  changeLanguage: "Other languages",
+  bioText: `Apostolos Pagonis was born in Athens, Greece in 1992. In  June of 2013 he received the Diploma in Cello from Philippos Nakas Conservatory in Athens. In September of 2015 he started his Bachelor studies in the Conservatorium of Utrecht  HKU , in the Netherlands with the specialization of Classical Cello ( Prof. Ran Varon) where he graduated Cum Laude in August of 2019.|
+   
+  In the course of his studies he followed multiple Masterclasses on Cello performance, chamber music and orchestra ( Michel Strauss, Gary Hoffman, Marcio Carneiro, Jeroen Den Herder).|
+  
+  He has performed Solo, with Chamber music groups and orchestras in venues in Greece, The Netherlands, Turkey, Belgium, Germany and France.|
+  He has participated in festivals like the Sound of Music Festival ( The Netherlands) and Delphoi festival ( Greece)|
+  Currently he is in the course of obtaining his Master of Music Degree with the specialization of Cello performance from Hanze, Prins Claus Conservatoire, Groningen ( Prof. Jan Ype-Nota)`
 };
 
 const el: Translation = {
@@ -65,7 +73,8 @@ const el: Translation = {
   contact: "Επικοινωνία",
   email: "Ηλεκρονικό ταχυδρομείο",
   phone: "Τηλέφωνο",
-  changeLanguage: "Αλλαγή γλώσσας"
+  changeLanguage: "Αλλαγή γλώσσας",
+  bioText: null
 };
 
 const languages: Languages = {

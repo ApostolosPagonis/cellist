@@ -186,6 +186,7 @@ const Header = observer(() => {
             {/* </PageLink> */}
           </Typography>
 
+          {/* DISCUSS: Check out some fonts. Do we at least want a different one for logo? https://fontsource.org */}
           {/* Big screen logo */}
           <Typography
             variant="h6"
