@@ -15,9 +15,23 @@ import Video from "./public-embeds/Video"
 const VideoPlayer = observer(() => {
   const [mini, setMini] = useState(false);
 
+  const handleCloseVideo = () => runInAction(() => store.video = undefined);
+
   useEffect(() => {
     setMini(false);
   }, [store.video?.src, store.videoMaximizeTrigger]);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.code === "ArrowDown") setMini(true);
+      else if (e.code === "ArrowUp") setMini(false);
+      else if (e.code === "Escape" || e.code === "Backspace") handleCloseVideo();
+    };
+
+    document.addEventListener("keydown", handler);
+
+    return () => document.removeEventListener("keydown", handler);
+  }, []);
 
   return <>
     <Fade
@@ -81,7 +95,7 @@ const VideoPlayer = observer(() => {
         unmountOnExit
       >
         <Fab
-          onClick={() => runInAction(() => store.video = undefined)}
+          onClick={handleCloseVideo}
           sx={{
             backgroundColor: "#0005",
             color: "white",

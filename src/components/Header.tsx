@@ -41,8 +41,10 @@ const SocMed = () => {
       rel="noopener noreferrer"
       style={{color: "inherit", textDecoration: "inherit"}}
       href="https://www.linkedin.com/in/apostolos-pagonis-66a1b2b9/"
+
+      tabIndex={1}
     >
-      <IconButton color='primary' sx={{color: "white"}}>
+      <IconButton color='primary' sx={{color: "white"}} tabIndex={-1}>
         <LinkedInIcon />
       </IconButton>
     </Link>
@@ -51,8 +53,10 @@ const SocMed = () => {
       rel="noopener noreferrer"
       style={{color: "inherit", textDecoration: "inherit"}}
       href="https://www.facebook.com/apostolos.pagonis/"
+
+      tabIndex={1}
     >
-      <IconButton color='primary' sx={{color: "white"}}>
+      <IconButton color='primary' sx={{color: "white"}} tabIndex={-1}>
         <FacebookIcon />
       </IconButton>
     </Link>
@@ -61,8 +65,10 @@ const SocMed = () => {
       rel="noopener noreferrer"
       style={{color: "inherit", textDecoration: "inherit"}}
       href="https://www.instagram.com/apostolospagonis/"
+
+      tabIndex={1}
     >
-      <IconButton color='primary' sx={{color: "white"}}>
+      <IconButton color='primary' sx={{color: "white"}} tabIndex={-1}>
         <InstagramIcon />
       </IconButton>
     </Link>
@@ -78,11 +84,12 @@ const pageToHref = (p: Page) => {
 }
 
 const PageLink = (props: {
-  children: React.ReactNode,
-  page: Page,
-  style?: React.CSSProperties
+  children: React.ReactNode;
+  page: Page;
+  style?: React.CSSProperties;
+  tabIndex?: number;
 }) => {
-  return <LocaleLink href={pageToHref(props.page)} style={props.style}>
+  return <LocaleLink tabIndex={props.tabIndex} href={pageToHref(props.page)} style={props.style}>
     {props.children}
   </LocaleLink>
 }
@@ -202,7 +209,7 @@ const Header = observer(() => {
               position: "relative"
             }}
           >
-            <PageLink page="home">
+            <PageLink tabIndex={-1} page="home">
               {logo}
             </PageLink>
           </Typography>
@@ -262,10 +269,9 @@ const Header = observer(() => {
 
           <SocMed />
           <Box>
-            {/* <SocMed /> */}
             <Box style={{display: "grid", justifyItems: "right"}}>
               <Tooltip title={translate("changeLanguage")}>
-                <IconButton onClick={handleOpenUserMenu} color='primary' sx={{color: "white", lineHeight: 1}}>
+                <IconButton tabIndex={1} onClick={handleOpenUserMenu} color='primary' sx={{color: "white", lineHeight: 1}}>
                   {
                     store.lang === "el" ?
                     getUnicodeFlagIcon("GR") :

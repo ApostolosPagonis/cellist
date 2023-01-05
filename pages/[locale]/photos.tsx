@@ -14,7 +14,7 @@ import Container from '@mui/material/Container'
 import Img from '../../src/components/public-embeds/Img'
 import useIsBig from '../../src/hooks/usIsBig'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Zoom from '@mui/material/Zoom'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
@@ -74,6 +74,26 @@ const PhotosPage = observer(() => {
   const swiper = useRef<SwiperClass>();
   const slide = useRef(0);
 
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (!swiper.current) return;
+
+      if (e.code === "ArrowLeft") swiper.current.slidePrev();
+      else if (e.code === "ArrowRight") swiper.current.slideNext();
+      else if (e.code === "ArrowDown" || e.code === "Escape" || e.code === "Backspace") setOpen(false);
+    };
+
+    document.addEventListener("keydown", handler);
+
+    return () => document.removeEventListener("keydown", handler);
+  }, []);
+
+  const handleOpenIMG = (i: number) => {
+    setOpen(true);
+    slide.current = i;
+    if (swiper.current) swiper.current.slideTo(i + 1, 0, false);
+  }
+
   return (
     <Container
       maxWidth="xl"
@@ -90,12 +110,25 @@ const PhotosPage = observer(() => {
         {images.map((item, i) => (
           <Box
             key={item.src}
+            tabIndex={0}
+
+            onKeyDown={e => {
+              if (e.code === "Enter") {
+                handleOpenIMG(i);
+              }
+
+              // TODO: flex navigation: https://stackoverflow.com/questions/49043684/how-to-calculate-the-amount-of-flexbox-items-in-a-row
+            }}
             sx={{
               overflow: "hidden",
               lineHeight: 0,
               "--img-scale": 1,
     
               "&:hover": {
+                "--img-scale": 1.1,
+                // outline: theme => `1px ${theme.palette.primary.main} solid`
+              },
+              "&:focus": {
                 "--img-scale": 1.1,
                 // outline: theme => `1px ${theme.palette.primary.main} solid`
               }
@@ -105,11 +138,7 @@ const PhotosPage = observer(() => {
               src={item.thumb ?? item.src}
               loading="lazy"
 
-              onClick={() => {
-                setOpen(true);
-                slide.current = i;
-                if (swiper.current) swiper.current.slideTo(i + 1, 0, false);
-              }}
+              onClick={() => handleOpenIMG(i)}
 
               style={{
                 width: size,

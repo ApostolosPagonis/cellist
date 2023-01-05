@@ -7,6 +7,7 @@ import store from '../../src/store/store'
 import { getStaticPaths, makeStaticProps } from '../../src/lib/getStatic'
 import { runInAction } from 'mobx'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import { useEffect } from 'react'
 
 const getStaticProps = makeStaticProps()
 export { getStaticPaths, getStaticProps }
@@ -62,6 +63,17 @@ const PhotosPage = observer(() => {
   const width = 320;
   const height = 180;
 
+  const handlePlay = (item: VideoData, isSelected: boolean) => {
+    runInAction(() => {
+      if (item && isSelected) {
+        store.triggerMaximize();
+        return;
+      }
+
+      store.video = item;
+    });
+  }
+
   return (
     <Container
       maxWidth="xl"
@@ -97,6 +109,17 @@ const PhotosPage = observer(() => {
               "&:hover": {
                 "--img-scale": 1.1,
                 // outline: theme => `1px ${theme.palette.primary.main} solid`
+              },
+              "&:focus": {
+                "--img-scale": 1.1,
+                // outline: theme => `1px ${theme.palette.primary.main} solid`
+              }
+            }}
+            tabIndex={0}
+    
+            onKeyDown={e => {
+              if (e.code === "Enter") {
+                handlePlay(item, isSelected);
               }
             }}
           >
@@ -104,17 +127,7 @@ const PhotosPage = observer(() => {
               src={src}
               loading="lazy"
 
-              onClick={() => {
-                runInAction(() => {
-                  if (item && isSelected) {
-                    // store.video = undefined;
-                    store.triggerMaximize();
-                    return;
-                  }
-  
-                  store.video = item;
-                });
-              }}
+              onClick={() => handlePlay(item, isSelected)}
 
               style={{
                 width, height,

@@ -21,39 +21,47 @@ const BioPage = observer(() => {
 
   const text = translate("bioText")
 
-  return <Box sx={{
-    position: "absolute",
-    top: 0, bottom: 0,
-    right: 0,
-    margin: big ? "10px" : undefined,
-    padding: big ? "10px" : "10px",
-    maxWidth: `min(${theme.breakpoints.values.sm}px, 100%)`,
-    backdropFilter: `blur(5px)`,
-    backgroundColor: "#000a",
-
-    overflow: "auto"
-  }}>
-    <Typography
-    variant="h5"
+  return <Box
     sx={{
-      fontWeight: 700,
-      letterSpacing: '.3rem',
-      textAlign: "center",
-      marginBottom: "20px"
+      position: "absolute",
+      top: "10px", bottom: "10px",
+      display: "grid",
+      justifyItems: "right",
+      alignItems: "start"
     }}
-    >
-      {translate("bio")}
-    </Typography>
+  >
+    <Box sx={{
+      maxHeight: "100%",
+      margin: big ? "0 10px" : undefined,
+      padding: big ? "0 10px" : "0 10px",
+      maxWidth: `min(${theme.breakpoints.values.sm}px, 100%)`,
+      backdropFilter: `blur(5px)`,
+      backgroundColor: "#000a",
 
-    {
-      text.split("|").filter(part => part !== "").map(part => {
-        return (
-          <Typography paragraph key={part}>
-            {part.trim()}
-          </Typography>
-        )
-      })
-    }
+      overflow: "auto"
+    }}>
+      <Typography
+      variant="h5"
+      sx={{
+        fontWeight: 700,
+        letterSpacing: '.3rem',
+        textAlign: "center",
+        marginBottom: "20px"
+      }}
+      >
+        {translate("bio")}
+      </Typography>
+
+      {
+        text.split("|").filter(part => part !== "").map(part => {
+          return (
+            <Typography paragraph key={part}>
+              {part.trim()}
+            </Typography>
+          )
+        })
+      }
+    </Box>
   </Box>
 })
 
