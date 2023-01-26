@@ -25,32 +25,24 @@ function areVideosEqual(v1?: VideoData, v2?: VideoData) {
 type VideoData = Exclude<typeof store.video, undefined>;
 const videos: VideoData[] = [
   {
-    src: "aeWyp2vXxqA",
+    src: "-prW5raJJWM",
+    youtube: true,
+    title: "F. Grutzmacher - Consecration Hymn Op. 65"
+  },
+  {
+    src: "BiSUqgMaWVQ",
     youtube: true
   },
   {
-    src: "OF8WuVXyvNQ",
+    src: "ePwDG_81QZc",
     youtube: true,
-    title: "Bach - Concerto for Two Violins in D Minor BWV1043 - Mov 3/3"
+    title: "Jasmin Kalathaki, Tribal Fusion Bellydance, Sail Cello cover"
   },
   {
-    src: "Zl9FTlKK1e0",
-    youtube: true,
-    title: "Giuseppe Tartini - Devil's Trill Sonata"
-  },
-  {
-    src: "/videos/sample-5s.mp4",
-    thumb: "/videos/sample-5s_thumb.jpg",
-    title: "sample local video"
-  },
-  {
-    src: "/videos/broken.mp4",
-    title: "broken video local"
-  },
-  {
-    src: "invalid",
-    youtube: true,
-    title: "broken video youtube"
+    // src: "https://www.rtvdrenthe.nl/tv/programma/kerst-met-magnificat/253?fbclid=IwAR0kYDmDozGG2ShYrD0q_h_nmds8IrB3bAT6LxY6l0xAlKFnMeZz_O7UhJM",
+    src: "https://d3vbm02trh7zmp.cloudfront.net/media/magn20221224-hhuitz.mp4",
+    title: "Kerst met Magnificat",
+    thumb: "https://i.regiogroei.cloud/fn_checksum,cd5bd72759d5ee52b27e558e1c76f483/1104x620/43776d0a-bc3a-3c8f-9224-ce010826539b.jpg?ts=1674751457124"
   }
 ];
 
