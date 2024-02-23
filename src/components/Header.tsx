@@ -25,7 +25,7 @@ import { Tab, Tabs } from '@mui/material';
 import useInternalNavigate from '../hooks/useInternalNavigate';
 import CelloSvg1 from './svg/CelloSvg1';
 
-const pages: Page[] = ['home', 'bio', 'photos', 'videos', 'events', 'contact'];
+const pages: Page[] = ['home', 'bio', 'photos', 'videos', 'events', 'personal_projects', 'contact'];
 const languages = [{
   label: getUnicodeFlagIcon("GR"),
   locale: "el"

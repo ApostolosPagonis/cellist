@@ -50,7 +50,7 @@ const toYoutubeThumbnail = (youtubeID: string) => {
   return `https://img.youtube.com/vi/${youtubeID}/hqdefault.jpg`
 }
 
-const PhotosPage = observer(() => {
+const VideosPage = observer(() => {
 
   const width = 320;
   const height = 180;
@@ -171,4 +171,4 @@ const PhotosPage = observer(() => {
   );
 });
 
-export default PhotosPage
+export default VideosPage

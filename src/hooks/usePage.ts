@@ -1,13 +1,14 @@
 import { useRouter } from "next/router"
 
-export type Page = 'home'|'bio'|'photos'|'videos'|'events'|'contact';
+export type Page = 'home'|'bio'|'photos'|'videos'|'events'|'contact'|'personal_projects';
 const pageVerifier: {[key in Page]: true} = {
   home: true,
   bio: true,
   photos: true,
   videos: true,
   events: true,
-  contact: true
+  contact: true,
+  personal_projects: true
 }
 export const isPage = (p: string): p is Page => {
   return !!pageVerifier[p as Page]

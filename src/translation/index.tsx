@@ -36,6 +36,7 @@ type Key =
 | "videos"
 | "events"
 | "contact"
+| "personal_projects"
 | "email"
 | "phone"
 | "changeLanguage"
@@ -50,6 +51,7 @@ const en: Translation = {
   videos: "Videos",
   events: "Events",
   contact: "Contact",
+  personal_projects: "Artistic Products and Projects",
   email: "Email",
   phone: "Phone",
   changeLanguage: "Other languages",
@@ -71,6 +73,7 @@ const el: Translation = {
   videos: "Βίντεο",
   events: "Ατζέντα", // εκδηλώσεις
   contact: "Επικοινωνία",
+  personal_projects: "Προσωπικά Projects",
   email: "Ηλεκρονικό ταχυδρομείο",
   phone: "Τηλέφωνο",
   changeLanguage: "Αλλαγή γλώσσας",
