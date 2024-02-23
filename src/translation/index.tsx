@@ -60,7 +60,7 @@ const en: Translation = {
   In the course of his studies he followed multiple Masterclasses on Cello performance, chamber music and orchestra ( Michel Strauss, Gary Hoffman, Marcio Carneiro, Jeroen Den Herder).|
   
   He has performed Solo, with Chamber music groups and orchestras in venues in Greece, The Netherlands, Turkey, Belgium, Germany and France.|
-  He has participated in festivals like the Sound of Music Festival, Aurora festival, Emmy Verhey Festival, Festival Valder Aa and Delphoi festival.|
+  He has participated in festivals like the Sound of Music, Aurora, Emmy Verhey, Valder Aa and Delphoi.|
   Currently he is in the course of obtaining his Master of Music Degree with the specialization of Cello performance from Hanze, Prins Claus Conservatoire, Groningen ( Prof. Jan Ype-Nota)
   `
 };
