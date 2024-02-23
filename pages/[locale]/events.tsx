@@ -1,4 +1,4 @@
-import { Box, Container, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { Container, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import { observer } from 'mobx-react-lite'
 import { getStaticPaths, makeStaticProps } from '../../src/lib/getStatic'
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';

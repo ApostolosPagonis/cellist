@@ -9,13 +9,17 @@ const LocaleLink = observer(({
   locale,
   href,
   style,
-  tabIndex
+  tabIndex,
+  target,
+  rel
 }: {
   children?: React.ReactNode;
   locale?: string;
   href: string;
   style?: React.CSSProperties;
   tabIndex?: number;
+  target?: string;
+  rel?: string;
 }) => {
   const l = locale ?? store.lang;
 
@@ -23,7 +27,7 @@ const LocaleLink = observer(({
 
   return (
     <>
-      <L tabIndex={tabIndex} href={href} onClick={() => {
+      <L tabIndex={tabIndex} rel={rel} target={target} href={href} onClick={() => {
         store.lang = l;
         document.documentElement.lang = l;
       }} style={{textDecoration: "inherit", color: "inherit", ...style}}>
