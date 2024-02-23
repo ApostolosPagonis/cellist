@@ -6,7 +6,13 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 const getStaticProps = makeStaticProps()
 export { getStaticPaths, getStaticProps }
 
-const events = `ouga youga grouga 
+const events = `
+30.03.2024, 8.00 p.m. - Engelberterweg 39, 9723 EJ Groningen, with Mare Nostrum Cello ensemble
+|
+26.02.2024&AEON, Master Final Recital, PDG Zaal, Prins Claus Conservatorium at 15:00
+|
+18.02.2024$Klassiek in 't Veen: Michel Strauss, cello en Jean-Claude Vanden Eynden, piano
+voor programma Mare Nostrum Cello ensemble
 |
 15.01.2023$Het is Tijd, Concert om te Verbinden en de ogen van politiek te openen 
 Immanuelkerk/ 12.00, Groningen / With Mare Nostrum Cello quartet 
