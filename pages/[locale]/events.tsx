@@ -6,7 +6,9 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 const getStaticProps = makeStaticProps()
 export { getStaticPaths, getStaticProps }
 
-const events = `15.01.2023$Het is Tijd, Concert om te Verbinden en de ogen van politiek te openen 
+const events = `ouga youga grouga 
+|
+15.01.2023$Het is Tijd, Concert om te Verbinden en de ogen van politiek te openen 
 Immanuelkerk/ 12.00, Groningen / With Mare Nostrum Cello quartet 
 |
 
